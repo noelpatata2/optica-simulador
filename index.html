@@ -526,6 +526,71 @@
             color: var(--text);
             font-weight: 600;
         }
+
+        .cases-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+            margin-top: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cases-table caption {
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-dim);
+            padding: 0 0 8px 0;
+        }
+
+        .cases-table th {
+            background: var(--surface2);
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 7px 6px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cases-table td {
+            padding: 6px 6px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: middle;
+        }
+
+        .cases-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cases-table tr.active-case {
+            background: rgba(67,97,238,0.08);
+        }
+
+        [data-theme="dark"] .cases-table tr.active-case {
+            background: rgba(108,140,255,0.1);
+        }
+
+        .cases-table .cell-badge {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .cell-real { background: rgba(22,163,74,0.1); color: var(--green); }
+        .cell-virtual { background: rgba(220,38,38,0.08); color: var(--red); }
+
+        [data-theme="dark"] .cell-real { background: rgba(74,222,128,0.12); }
+        [data-theme="dark"] .cell-virtual { background: rgba(248,113,113,0.12); }
     </style>
 </head>
 <body>
@@ -788,6 +853,56 @@
                 <span class="data-value neutral" id="data-mirror-verify2">--</span>
             </div>
         </div>
+
+        <table class="cases-table" id="mirror-cases-table">
+            <caption>Resumen de casos (concavo)</caption>
+            <thead>
+                <tr>
+                    <th>Posicion</th>
+                    <th>Imagen</th>
+                    <th>Tipo</th>
+                    <th>Orient.</th>
+                    <th>Tamano</th>
+                </tr>
+            </thead>
+            <tbody id="mirror-cases-body">
+                <tr data-case="far">
+                    <td>d&#8320; &gt; 2f</td>
+                    <td>f &lt; d&#7522; &lt; 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Reducida</td>
+                </tr>
+                <tr data-case="center">
+                    <td>d&#8320; = 2f</td>
+                    <td>d&#7522; = 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Igual</td>
+                </tr>
+                <tr data-case="between">
+                    <td>f &lt; d&#8320; &lt; 2f</td>
+                    <td>d&#7522; &gt; 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Aumentada</td>
+                </tr>
+                <tr data-case="atfocus">
+                    <td>d&#8320; = f</td>
+                    <td>d&#7522; = &#8734;</td>
+                    <td>&#8212;</td>
+                    <td>&#8212;</td>
+                    <td>&#8212;</td>
+                </tr>
+                <tr data-case="inside">
+                    <td>d&#8320; &lt; f</td>
+                    <td>|d&#7522;| &gt; d&#8320;</td>
+                    <td><span class="cell-badge cell-virtual">Virtual</span></td>
+                    <td>Derecha</td>
+                    <td>Aumentada</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -915,6 +1030,56 @@
                 <span class="data-value neutral" id="data-lens-verify2">--</span>
             </div>
         </div>
+
+        <table class="cases-table" id="lens-cases-table">
+            <caption>Resumen de casos (convergente)</caption>
+            <thead>
+                <tr>
+                    <th>Posicion</th>
+                    <th>Imagen</th>
+                    <th>Tipo</th>
+                    <th>Orient.</th>
+                    <th>Tamano</th>
+                </tr>
+            </thead>
+            <tbody id="lens-cases-body">
+                <tr data-case="far">
+                    <td>d&#8320; &gt; 2f</td>
+                    <td>f &lt; d&#7522; &lt; 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Reducida</td>
+                </tr>
+                <tr data-case="center">
+                    <td>d&#8320; = 2f</td>
+                    <td>d&#7522; = 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Igual</td>
+                </tr>
+                <tr data-case="between">
+                    <td>f &lt; d&#8320; &lt; 2f</td>
+                    <td>d&#7522; &gt; 2f</td>
+                    <td><span class="cell-badge cell-real">Real</span></td>
+                    <td>Invertida</td>
+                    <td>Aumentada</td>
+                </tr>
+                <tr data-case="atfocus">
+                    <td>d&#8320; = f</td>
+                    <td>d&#7522; = &#8734;</td>
+                    <td>&#8212;</td>
+                    <td>&#8212;</td>
+                    <td>&#8212;</td>
+                </tr>
+                <tr data-case="inside">
+                    <td>d&#8320; &lt; f</td>
+                    <td>|d&#7522;| &gt; d&#8320;</td>
+                    <td><span class="cell-badge cell-virtual">Virtual</span></td>
+                    <td>Derecha</td>
+                    <td>Aumentada</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -1331,8 +1496,45 @@ function updateMirrors() {
     }
 
     $('mirror-case-desc').innerHTML = getMirrorCaseDesc(mirrorType, d0, fAbs);
+    highlightMirrorCase(mirrorType, d0, fAbs);
 
     drawMirrors();
+}
+
+function highlightMirrorCase(type, d0, fAbs) {
+    const table = $('mirror-cases-table');
+    const rows = $('mirror-cases-body').querySelectorAll('tr');
+    rows.forEach(r => r.classList.remove('active-case'));
+
+    if (type === 'convex') {
+        table.querySelector('caption').textContent = 'Resumen de casos (convexo)';
+        // Hide concave rows, show single convex info
+        $('mirror-cases-body').innerHTML =
+            '<tr class="active-case"><td colspan="5" style="text-align:center;color:var(--text-dim);padding:10px;">Siempre: imagen virtual, derecha y reducida</td></tr>';
+        return;
+    }
+
+    table.querySelector('caption').textContent = 'Resumen de casos (concavo)';
+    // Restore concave rows if they were replaced
+    if (!$('mirror-cases-body').querySelector('[data-case]')) {
+        $('mirror-cases-body').innerHTML =
+            '<tr data-case="far"><td>d\u2080 > 2f</td><td>f < d\u1d62 < 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Reducida</td></tr>' +
+            '<tr data-case="center"><td>d\u2080 = 2f</td><td>d\u1d62 = 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Igual</td></tr>' +
+            '<tr data-case="between"><td>f < d\u2080 < 2f</td><td>d\u1d62 > 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Aumentada</td></tr>' +
+            '<tr data-case="atfocus"><td>d\u2080 = f</td><td>d\u1d62 = \u221E</td><td>\u2014</td><td>\u2014</td><td>\u2014</td></tr>' +
+            '<tr data-case="inside"><td>d\u2080 < f</td><td>|d\u1d62| > d\u2080</td><td><span class="cell-badge cell-virtual">Virtual</span></td><td>Derecha</td><td>Aumentada</td></tr>';
+    }
+
+    const f = fAbs;
+    let activeCase;
+    if (Math.abs(d0 - f) < 1) activeCase = 'atfocus';
+    else if (d0 < f) activeCase = 'inside';
+    else if (Math.abs(d0 - 2 * f) < 1) activeCase = 'center';
+    else if (d0 > 2 * f) activeCase = 'far';
+    else activeCase = 'between';
+
+    const row = $('mirror-cases-body').querySelector(`[data-case="${activeCase}"]`);
+    if (row) row.classList.add('active-case');
 }
 
 function drawMirrors() {
@@ -1611,8 +1813,43 @@ function updateLenses() {
     }
 
     $('lens-case-desc').innerHTML = getLensCaseDesc(lensType, d0, fAbs);
+    highlightLensCase(lensType, d0, fAbs);
 
     drawLenses();
+}
+
+function highlightLensCase(type, d0, fAbs) {
+    const table = $('lens-cases-table');
+    const rows = $('lens-cases-body').querySelectorAll('tr');
+    rows.forEach(r => r.classList.remove('active-case'));
+
+    if (type === 'diverging') {
+        table.querySelector('caption').textContent = 'Resumen de casos (divergente)';
+        $('lens-cases-body').innerHTML =
+            '<tr class="active-case"><td colspan="5" style="text-align:center;color:var(--text-dim);padding:10px;">Siempre: imagen virtual, derecha y reducida</td></tr>';
+        return;
+    }
+
+    table.querySelector('caption').textContent = 'Resumen de casos (convergente)';
+    if (!$('lens-cases-body').querySelector('[data-case]')) {
+        $('lens-cases-body').innerHTML =
+            '<tr data-case="far"><td>d\u2080 > 2f</td><td>f < d\u1d62 < 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Reducida</td></tr>' +
+            '<tr data-case="center"><td>d\u2080 = 2f</td><td>d\u1d62 = 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Igual</td></tr>' +
+            '<tr data-case="between"><td>f < d\u2080 < 2f</td><td>d\u1d62 > 2f</td><td><span class="cell-badge cell-real">Real</span></td><td>Invertida</td><td>Aumentada</td></tr>' +
+            '<tr data-case="atfocus"><td>d\u2080 = f</td><td>d\u1d62 = \u221E</td><td>\u2014</td><td>\u2014</td><td>\u2014</td></tr>' +
+            '<tr data-case="inside"><td>d\u2080 < f</td><td>|d\u1d62| > d\u2080</td><td><span class="cell-badge cell-virtual">Virtual</span></td><td>Derecha</td><td>Aumentada</td></tr>';
+    }
+
+    const f = fAbs;
+    let activeCase;
+    if (Math.abs(d0 - f) < 1) activeCase = 'atfocus';
+    else if (d0 < f) activeCase = 'inside';
+    else if (Math.abs(d0 - 2 * f) < 1) activeCase = 'center';
+    else if (d0 > 2 * f) activeCase = 'far';
+    else activeCase = 'between';
+
+    const row = $('lens-cases-body').querySelector(`[data-case="${activeCase}"]`);
+    if (row) row.classList.add('active-case');
 }
 
 function drawLenses() {
