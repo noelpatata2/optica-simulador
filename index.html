@@ -491,6 +491,117 @@
             }
         }
 
+        /* ---- Tablet ---- */
+        @media (max-width: 900px) {
+            header { padding: 12px 16px; }
+
+            .tabs { padding: 0 8px; gap: 0; overflow-x: auto; }
+            .tab { padding: 10px 14px; font-size: 0.8rem; white-space: nowrap; }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: calc(100vh - 100px);
+            }
+
+            .panel {
+                border-right: none;
+                border-left: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .panel:last-child { border-left: none; }
+
+            .canvas-area {
+                min-height: 350px;
+                height: 45vh;
+            }
+
+            canvas { min-height: 300px; }
+        }
+
+        /* ---- Mobile ---- */
+        @media (max-width: 600px) {
+            header {
+                padding: 10px 12px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .copyright { font-size: 0.95rem; }
+
+            .header-right { margin-left: auto; }
+
+            .theme-toggle {
+                padding: 3px 10px 3px 8px;
+                font-size: 0.72rem;
+            }
+
+            .theme-toggle .toggle-track { width: 30px; height: 17px; }
+            .theme-toggle .toggle-thumb { width: 13px; height: 13px; }
+            [data-theme="dark"] .theme-toggle .toggle-thumb { transform: translateX(13px); }
+
+            .tabs {
+                padding: 0 4px;
+                gap: 0;
+            }
+
+            .tab {
+                padding: 9px 10px;
+                font-size: 0.74rem;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .panel { padding: 14px 12px; }
+
+            .canvas-area {
+                min-height: 280px;
+                height: 40vh;
+            }
+
+            .formula-box { font-size: 0.9rem; padding: 8px 10px; }
+            .info-banner { font-size: 0.78rem; padding: 8px 10px; }
+            .data-card { padding: 10px; }
+            .data-label { font-size: 0.78rem; }
+            .data-value { font-size: 0.82rem; }
+
+            .slider-value { min-width: 42px; font-size: 0.8rem; }
+
+            .canvas-toolbar {
+                padding: 6px 10px;
+                gap: 8px;
+            }
+
+            .legend-item { font-size: 0.68rem; }
+            .legend-color { width: 12px; }
+            .separator { height: 12px; }
+
+            .cases-page {
+                padding: 20px 14px 30px;
+            }
+
+            .cases-page-title { font-size: 1.1rem; }
+            .cases-page-subtitle { font-size: 0.82rem; margin-bottom: 20px; }
+
+            .case-block { padding: 14px; }
+            .case-block-title { font-size: 0.9rem; }
+
+            .cases-table { font-size: 0.68rem; }
+            .cases-table th { font-size: 0.62rem; padding: 5px 4px; }
+            .cases-table td { padding: 5px 4px; }
+            .cell-badge { font-size: 0.6rem; padding: 1px 4px; }
+
+            .cases-footer { flex-direction: column; gap: 12px; }
+            .cases-footer-item { font-size: 0.78rem; }
+
+            .scale-indicator { font-size: 0.65rem; }
+            .case-description { font-size: 0.76rem; }
+        }
+
         /* Scrollbar styling */
         .panel::-webkit-scrollbar { width: 5px; }
         .panel::-webkit-scrollbar-track { background: transparent; }
@@ -693,9 +804,8 @@
         }
 
         @media (max-width: 900px) {
-            .cases-grid {
-                grid-template-columns: 1fr;
-            }
+            .cases-grid { grid-template-columns: 1fr; }
+            .cases-layout { height: auto; min-height: calc(100vh - 100px); }
         }
     </style>
 </head>
