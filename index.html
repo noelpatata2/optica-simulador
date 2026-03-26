@@ -1753,15 +1753,16 @@ function drawMirrors() {
 
     // Mirror surface (much more visible)
     const mirrorH = Math.min(H * 0.72, 280);
-    const curveDepth = mirrorType === 'concave' ? 22 : -22;
+    const curveDepth = mirrorType === 'concave' ? -22 : 22;
 
-    // Mirror fill (subtle)
+    // Mirror fill (subtle) — always behind mirror (to the right)
+    const fillRight = mirrorX + Math.abs(curveDepth) + 14;
     ctx.fillStyle = isDark ? 'rgba(108,140,255,0.05)' : 'rgba(67,97,238,0.04)';
     ctx.beginPath();
     ctx.moveTo(mirrorX + curveDepth, axisY - mirrorH / 2);
     ctx.quadraticCurveTo(mirrorX - curveDepth, axisY, mirrorX + curveDepth, axisY + mirrorH / 2);
-    ctx.lineTo(mirrorX + curveDepth + 14, axisY + mirrorH / 2);
-    ctx.lineTo(mirrorX + curveDepth + 14, axisY - mirrorH / 2);
+    ctx.lineTo(fillRight, axisY + mirrorH / 2);
+    ctx.lineTo(fillRight, axisY - mirrorH / 2);
     ctx.closePath();
     ctx.fill();
 
@@ -1773,12 +1774,12 @@ function drawMirrors() {
     ctx.quadraticCurveTo(mirrorX - curveDepth, axisY, mirrorX + curveDepth, axisY + mirrorH / 2);
     ctx.stroke();
 
-    // Hatching behind mirror
+    // Hatching behind mirror (always to the right of the curve)
     ctx.strokeStyle = col.hatch;
     ctx.lineWidth = 1;
     for (let y = axisY - mirrorH / 2; y <= axisY + mirrorH / 2; y += 7) {
         const t = (y - (axisY - mirrorH / 2)) / mirrorH;
-        const xCurve = mirrorX + curveDepth - 2 * curveDepth * Math.pow(2 * t - 1, 2) + curveDepth;
+        const xCurve = mirrorX + curveDepth * Math.pow(1 - 2 * t, 2);
         ctx.beginPath();
         ctx.moveTo(xCurve, y);
         ctx.lineTo(xCurve + 12, y - 7);
